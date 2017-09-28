@@ -1,0 +1,1 @@
+A implementation of [StaticDataTableViewController](https://github.com/peterpaulis/StaticDataTableViewController) in Swift
