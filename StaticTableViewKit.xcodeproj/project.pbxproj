@@ -11,7 +11,7 @@
 		70C7B7CA1F7DA5E300235040 /* StaticDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */; };
 		70C7B7CC1F7DA71C00235040 /* OriginalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */; };
 		70C7B7CE1F7DAE5F00235040 /* OriginalSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */; };
-		70F147221F7DBAEF00ECDEEB /* StaticTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F147211F7DBAEF00ECDEEB /* StaticTableController.swift */; };
+		70F147221F7DBAEF00ECDEEB /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +21,7 @@
 		70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticDataTableViewController.swift; sourceTree = "<group>"; };
 		70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalRow.swift; sourceTree = "<group>"; };
 		70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalSection.swift; sourceTree = "<group>"; };
-		70F147211F7DBAEF00ECDEEB /* StaticTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableController.swift; sourceTree = "<group>"; };
+		70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 				70C7B7C21F7DA5A800235040 /* Info.plist */,
 				70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */,
 				70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */,
-				70F147211F7DBAEF00ECDEEB /* StaticTableController.swift */,
+				70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */,
 				70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */,
 				70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */,
 			);
@@ -147,7 +147,7 @@
 				70C7B7CA1F7DA5E300235040 /* StaticDataTableViewController.swift in Sources */,
 				70C7B7CC1F7DA71C00235040 /* OriginalRow.swift in Sources */,
 				70C7B7CE1F7DAE5F00235040 /* OriginalSection.swift in Sources */,
-				70F147221F7DBAEF00ECDEEB /* StaticTableController.swift in Sources */,
+				70F147221F7DBAEF00ECDEEB /* StaticTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

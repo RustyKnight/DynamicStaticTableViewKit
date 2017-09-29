@@ -38,7 +38,7 @@ class OriginalRow {
 	var batchOperation: BatchOperation = .none
 	let cell: UITableViewCell
 	let indexPath: IndexPath
-	var height: Float!
+	var height: CGFloat? = nil // Not sure I want this
   
   init(indexPath: IndexPath, cell: UITableViewCell) {
     self.indexPath = indexPath

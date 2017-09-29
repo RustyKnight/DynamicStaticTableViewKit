@@ -12,7 +12,7 @@ enum OriginalTableError: Error {
   case invalidDataSource
 }
 
-class StaticTableController {
+class StaticTableViewController {
   
   var sections: [OriginalSection] = []
   var tableView: UITableView
