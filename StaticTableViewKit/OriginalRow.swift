@@ -6,7 +6,7 @@
 //  Copyright © 2017 Shane Whitehead. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum BatchOperation {
 	case none
