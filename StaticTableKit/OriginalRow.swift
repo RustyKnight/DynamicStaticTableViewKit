@@ -8,40 +8,45 @@
 
 import Foundation
 
-public enum BatchOperation {
+enum BatchOperation {
 	case none
 	case insert
 	case delete
 	case update
 }
 
-public struct OriginalRow {
+struct OriginalRow {
 	
-	public var hidden: Bool {
+	var isHidden: Bool {
 		get {
-			return hiddenPlanned
+			return isHiddenPlanned
 		}
 		
 		set {
-			if !hiddenReal && hidden {
+			if !isHiddenReal && isHidden {
 				batchOperation = .delete
-			} else if hiddenReal && !hidden {
+			} else if isHiddenReal && !isHidden {
 				batchOperation = .insert
 			}
 			
-			hiddenPlanned = hidden
+			isHiddenPlanned = isHidden
 		}
 	}
 	
-	var hiddenReal: Bool = false
-	var hiddenPlanned: Bool = false
-	public var batchOperation: BatchOperation = .none
-	public var cell: UITableViewCell!
-	public var indexPath: IndexPath!
-	public var height: Float!
+	var isHiddenReal: Bool = false
+	var isHiddenPlanned: Bool = false
+	var batchOperation: BatchOperation = .none
+	let cell: UITableViewCell
+	let indexPath: IndexPath
+	var height: Float!
+  
+  init(indexPath: IndexPath, cell: UITableViewCell) {
+    self.indexPath = indexPath
+    self.cell = cell
+  }
 	
 	mutating func update() {
-		guard !hidden && batchOperation == .none else {
+		guard !isHidden && batchOperation == .none else {
 			return
 		}
 		batchOperation = .update
