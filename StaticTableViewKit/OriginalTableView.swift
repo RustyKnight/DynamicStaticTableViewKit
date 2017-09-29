@@ -12,12 +12,12 @@ enum OriginalTableError: Error {
   case invalidDataSource
 }
 
-class OriginalTable {
+class OriginalTableView {
   var sections: [OriginalSection] = []
   var tableView: UITableView
   var indexPaths: [BatchOperation: [Int]] = [:]
   
-  init?(tableView: UITableView) throws {
+  init(tableView: UITableView) throws {
     guard let dataSource = tableView.dataSource else {
       throw OriginalTableError.invalidDataSource
     }
@@ -34,4 +34,27 @@ class OriginalTable {
       sections.append(originalSection)
     }
   }
+	
+	func row(at indexPath: IndexPath) -> OriginalRow {
+		let section = sections[indexPath.section]
+		// Should this be a method call?
+		return section.rows[indexPath.row]
+	}
+	
+	func visibleRow(at indexPath: IndexPath) -> OriginalRow? {
+		let section = sections[indexPath.section]
+		return section.visibleRow(at: indexPath.row)
+	}
+	
+	func rowW(with cell: UITableViewCell) -> OriginalRow? {
+		for section in sections {
+			for row in section.rows {
+				guard row.cell == cell else {
+					continue
+				}
+				return row
+			}
+		}
+		return nil
+	}
 }
