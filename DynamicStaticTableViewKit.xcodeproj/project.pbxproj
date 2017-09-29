@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		70C7B7BE1F7DA5A800235040 /* StaticTableViewKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StaticTableViewKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70C7B7BE1F7DA5A800235040 /* DynamicStaticTableViewKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DynamicStaticTableViewKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticTableViewKit.h; sourceTree = "<group>"; };
 		70C7B7C21F7DA5A800235040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70C7B7C91F7DA5E300235040 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		70C7B7B41F7DA5A800235040 = {
 			isa = PBXGroup;
 			children = (
-				70C7B7C01F7DA5A800235040 /* StaticTableViewKit */,
+				70C7B7C01F7DA5A800235040 /* DynamicStaticTableViewKit */,
 				70C7B7BF1F7DA5A800235040 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +46,12 @@
 		70C7B7BF1F7DA5A800235040 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				70C7B7BE1F7DA5A800235040 /* StaticTableViewKit.framework */,
+				70C7B7BE1F7DA5A800235040 /* DynamicStaticTableViewKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		70C7B7C01F7DA5A800235040 /* StaticTableViewKit */ = {
+		70C7B7C01F7DA5A800235040 /* DynamicStaticTableViewKit */ = {
 			isa = PBXGroup;
 			children = (
 				70C7B7C21F7DA5A800235040 /* Info.plist */,
@@ -61,7 +61,7 @@
 				70C7B7C91F7DA5E300235040 /* StaticTableViewController.swift */,
 				70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */,
 			);
-			path = StaticTableViewKit;
+			path = DynamicStaticTableViewKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,9 +78,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		70C7B7BD1F7DA5A800235040 /* StaticTableViewKit */ = {
+		70C7B7BD1F7DA5A800235040 /* DynamicStaticTableViewKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 70C7B7C61F7DA5A800235040 /* Build configuration list for PBXNativeTarget "StaticTableViewKit" */;
+			buildConfigurationList = 70C7B7C61F7DA5A800235040 /* Build configuration list for PBXNativeTarget "DynamicStaticTableViewKit" */;
 			buildPhases = (
 				70C7B7B91F7DA5A800235040 /* Sources */,
 				70C7B7BA1F7DA5A800235040 /* Frameworks */,
@@ -91,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = StaticTableViewKit;
+			name = DynamicStaticTableViewKit;
 			productName = StaticTableKit;
-			productReference = 70C7B7BE1F7DA5A800235040 /* StaticTableViewKit.framework */;
+			productReference = 70C7B7BE1F7DA5A800235040 /* DynamicStaticTableViewKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 70C7B7B81F7DA5A800235040 /* Build configuration list for PBXProject "StaticTableViewKit" */;
+			buildConfigurationList = 70C7B7B81F7DA5A800235040 /* Build configuration list for PBXProject "DynamicStaticTableViewKit" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				70C7B7BD1F7DA5A800235040 /* StaticTableViewKit */,
+				70C7B7BD1F7DA5A800235040 /* DynamicStaticTableViewKit */,
 			);
 		};
 /* End PBXProject section */
@@ -317,7 +317,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		70C7B7B81F7DA5A800235040 /* Build configuration list for PBXProject "StaticTableViewKit" */ = {
+		70C7B7B81F7DA5A800235040 /* Build configuration list for PBXProject "DynamicStaticTableViewKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				70C7B7C41F7DA5A800235040 /* Debug */,
@@ -326,7 +326,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		70C7B7C61F7DA5A800235040 /* Build configuration list for PBXNativeTarget "StaticTableViewKit" */ = {
+		70C7B7C61F7DA5A800235040 /* Build configuration list for PBXNativeTarget "DynamicStaticTableViewKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				70C7B7C71F7DA5A800235040 /* Debug */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class staticTableViewModel: UITableViewController {
+open class DynamicStaticTableViewController: UITableViewController {
   
   // MARK: Custom properties
   

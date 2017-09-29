@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "70C7B7BD1F7DA5A800235040"
-               BuildableName = "StaticTableViewKit.framework"
-               BlueprintName = "StaticTableViewKit"
-               ReferencedContainer = "container:StaticTableViewKit.xcodeproj">
+               BuildableName = "DynamicStaticTableViewKit.framework"
+               BlueprintName = "DynamicStaticTableViewKit"
+               ReferencedContainer = "container:DynamicStaticTableViewKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,9 +48,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "70C7B7BD1F7DA5A800235040"
-            BuildableName = "StaticTableViewKit.framework"
-            BlueprintName = "StaticTableViewKit"
-            ReferencedContainer = "container:StaticTableViewKit.xcodeproj">
+            BuildableName = "DynamicStaticTableViewKit.framework"
+            BlueprintName = "DynamicStaticTableViewKit"
+            ReferencedContainer = "container:DynamicStaticTableViewKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "70C7B7BD1F7DA5A800235040"
-            BuildableName = "StaticTableViewKit.framework"
-            BlueprintName = "StaticTableViewKit"
-            ReferencedContainer = "container:StaticTableViewKit.xcodeproj">
+            BuildableName = "DynamicStaticTableViewKit.framework"
+            BlueprintName = "DynamicStaticTableViewKit"
+            ReferencedContainer = "container:DynamicStaticTableViewKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
