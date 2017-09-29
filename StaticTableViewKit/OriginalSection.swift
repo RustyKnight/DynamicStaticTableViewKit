@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OriginalSection {
+public class OriginalSection {
 
   let rows: [OriginalRow]
   

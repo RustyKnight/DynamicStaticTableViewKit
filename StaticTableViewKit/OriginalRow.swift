@@ -15,7 +15,7 @@ enum BatchOperation {
 	case update
 }
 
-class OriginalRow {
+public class OriginalRow {
 	
 	var isHidden: Bool {
 		get {

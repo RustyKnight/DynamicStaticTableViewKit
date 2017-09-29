@@ -1,5 +1,5 @@
 //
-//  OriginalTable.swift
+//  StaticDataTableViewController.swift
 //  StaticTableKit
 //
 //  Created by Shane Whitehead on 29/9/17.
@@ -8,124 +8,215 @@
 
 import UIKit
 
-enum OriginalTableError: Error {
-  case invalidDataSource
-}
+open class staticTableViewModel: UITableViewController {
+  
+  // MARK: Custom properties
+  
+	open var hideEmptySections: Bool = true
+	open var animateSectionHeaders: Bool = true
+	
+	open var insertTableViewRowAnimation: UITableViewRowAnimation = .automatic
+	open var deleteTableViewRowAnimation: UITableViewRowAnimation = .automatic
+	open var reloadTableViewRowAnimation: UITableViewRowAnimation = .automatic
+  
+  public var staticTableViewModel: StaticTableViewModel?
+  
+  // MARK: Custom functionality
 
-class StaticTableViewController {
-  
-  var sections: [OriginalSection] = []
-  var tableView: UITableView
-  var operationIndexPaths: [BatchOperation: [IndexPath]] = [:]
-  
-  var insertOperations: [IndexPath] {
-    return operations(for: .insert)
-  }
-  
-  var deleteOperations: [IndexPath] {
-    return operations(for: .delete)
-  }
-  
-  var updateOperations: [IndexPath] {
-    return operations(for: .update)
-  }
-
-  init(tableView: UITableView) throws {
-    guard let dataSource = tableView.dataSource else {
-      throw OriginalTableError.invalidDataSource
+	open func cellIsHidden(_ cell: UITableViewCell) -> Bool {
+    guard let controller = staticTableViewModel else {
+      return false
     }
-    self.tableView = tableView
-    for sectionIndex in 0..<tableView.numberOfSections {
-      var rows: [OriginalRow] = []
-      for rowIndex in 0..<tableView.numberOfRows(inSection: sectionIndex) {
-        let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
-        let cell = dataSource.tableView(tableView, cellForRowAt: indexPath)
-        let originalRow = OriginalRow(indexPath: indexPath, cell: cell)
-        rows.append(originalRow)
-      }
-      let originalSection = OriginalSection(rows: rows)
-      sections.append(originalSection)
+    guard let row = controller.row(with: cell) else {
+      return false
     }
-  }
-  
-  func operations(for batch: BatchOperation) -> [IndexPath] {
-    guard let operations = operationIndexPaths[batch] else {
-      return []
-    }
-    return operations
-  }
-	
-	func row(at indexPath: IndexPath) -> OriginalRow {
-		let section = sections[indexPath.section]
-		// Should this be a method call?
-		return section.rows[indexPath.row]
+    return row.isHidden
 	}
 	
-	func visibleRow(at indexPath: IndexPath) -> OriginalRow? {
-		let section = sections[indexPath.section]
-		return section.visibleRow(at: indexPath.row)
-	}
-	
-	func row(with cell: UITableViewCell) -> OriginalRow? {
-		for section in sections {
-			for row in section.rows {
-				guard row.cell == cell else {
-					continue
-				}
-				return row
-			}
-		}
-		return nil
-	}
-  
-  func visibleIndexPath(for row: OriginalRow) -> IndexPath {
-    let section = sections[row.indexPath.section]
-    var visibleRow = -1
-    for rowIndex in 0..<row.indexPath.row {
-      let row = section.rows[rowIndex]
-      guard !row.isHidden else {
+	open func update(cell: UITableViewCell...) {
+    guard let controller = staticTableViewModel else {
+      return
+    }
+    for aCell in cell {
+      guard let row = controller.row(with: aCell) else {
         continue
       }
-      visibleRow += 1
+      row.update()
     }
-    visibleRow += 1
-    return IndexPath(row: visibleRow, section: row.indexPath.section)
-  }
+	}
 	
-  func insertingIndexPath(forRow row: OriginalRow) -> IndexPath {
-    return visibleIndexPath(for: row)
-  }
-  
-  func deletingIndexPath(forRow row: OriginalRow) -> IndexPath {
-    return visibleIndexPath(for: row)
-  }
-  
-  func prepareUpdates() {
-    
-    var insertOperations: [IndexPath] = []
-    var deleteOperations: [IndexPath] = []
-    var updateOperations: [IndexPath] = []
-    
-    for section in sections {
-      for row in section.rows {
-        switch row.batchOperation {
-        case .delete: deleteOperations.append(deletingIndexPath(forRow: row))
-        case .insert: insertOperations.append(insertingIndexPath(forRow: row))
-        case .update: updateOperations.append(insertingIndexPath(forRow: row))
-        case .none: break
+	open func cell(_ cell: UITableViewCell, hide: Bool) {
+    guard let controller = staticTableViewModel else {
+      return
+    }
+    guard let row = controller.row(with: cell) else {
+      return
+    }
+    row.isHidden = hide
+	}
+	
+	open func cell(_ cell: UITableViewCell..., height: CGFloat) {
+    guard let controller = staticTableViewModel else {
+      return
+    }
+    for aCell in cell {
+      guard let row = controller.row(with: aCell) else {
+        continue
+      }
+      row.height = height
+    }
+	}
+	
+	open func reloadData(animated: Bool) {
+    guard let controller = staticTableViewModel else {
+      return
+    }
+    controller.prepareUpdates()
+    guard animated else {
+      tableView.reloadData()
+      return
+    }
+    if animateSectionHeaders {
+      if let paths = controller.operationIndexPaths[.delete] {
+        for indexPath in paths {
+          let cell = tableView.cellForRow(at: indexPath)
+          cell?.layer.zPosition = -2
+          tableView.headerView(forSection: indexPath.section)?.layer.zPosition = -1
         }
       }
     }
-    
-    operationIndexPaths[.delete] = deleteOperations
-    operationIndexPaths[.insert] = insertOperations
-    operationIndexPaths[.update] = updateOperations
-    
-    for section in sections {
-      for row in section.rows {
-        row.isHiddenReal = row.isHiddenPlanned
-        row.batchOperation = .none
-      }
+    tableView.beginUpdates()
+    tableView.reloadRows(at: controller.updateOperations, with: reloadTableViewRowAnimation)
+    tableView.reloadRows(at: controller.insertOperations, with: insertTableViewRowAnimation)
+    tableView.reloadRows(at: controller.deleteOperations, with: deleteTableViewRowAnimation)
+    tableView.endUpdates()
+    if animateSectionHeaders {
+      tableView.reloadData()
+    }
+	}
+  
+  // MARK: Common Functionality
+  
+  // Must be implemented
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  public override init(style: UITableViewStyle) {
+    super.init(style: style)
+    //??
+  }
+  
+  open override func viewDidLoad() {
+    super.viewDidLoad()
+
+    do {
+      staticTableViewModel = try StaticTableViewModel(tableView: tableView)
+    } catch let error {
+      print(error)
     }
   }
+	
+	// MARK: TableView Data Source
+	
+	open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		guard let controller = staticTableViewModel else {
+			return super.tableView(tableView, numberOfRowsInSection: section)
+		}
+		return controller.sections[section].numberOfVisibleRows
+	}
+	
+	open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		guard let controller = staticTableViewModel else {
+			return super.tableView(tableView, cellForRowAt: indexPath)
+		}
+		guard let row = controller.visibleRow(at: indexPath) else {
+			// Well, I guess we're screwed
+			return super.tableView(tableView, cellForRowAt: indexPath)
+		}
+		return row.cell
+	}
+	
+	open override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard tableView.estimatedRowHeight != UITableViewAutomaticDimension else {
+			return UITableViewAutomaticDimension
+		}
+		guard let controller = staticTableViewModel else {
+			return super.tableView(tableView, heightForRowAt: indexPath)
+		}
+		guard let row = controller.visibleRow(at: indexPath) else {
+			// Well, I guess we're screwed
+			return super.tableView(tableView, heightForRowAt: indexPath)
+		}
+		guard let rowHeight = row.height else {
+			return super.tableView(tableView, heightForRowAt: indexPath)
+		}
+		return rowHeight
+	}
+	
+	open override func tableView(_ view: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		guard tableView.estimatedSectionHeaderHeight != UITableViewAutomaticDimension else {
+			return UITableViewAutomaticDimension
+		}
+		let defaultHeight = super.tableView(view, heightForHeaderInSection: section)
+		guard hideEmptySections else {
+			return defaultHeight
+		}
+		guard let controller = staticTableViewModel else {
+			return defaultHeight
+		}
+		let section = controller.sections[section]
+		guard section.rows.count > 0 else {
+			return 0
+		}
+		return defaultHeight
+	}
+	
+	open override func tableView(_ view: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		guard tableView.estimatedSectionFooterHeight != UITableViewAutomaticDimension else {
+			return UITableViewAutomaticDimension
+		}
+		let defaultHeight = super.tableView(view, heightForFooterInSection: section)
+		guard hideEmptySections else {
+			return defaultHeight
+		}
+		guard let controller = staticTableViewModel else {
+			return defaultHeight
+		}
+		let section = controller.sections[section]
+		guard section.rows.count > 0 else {
+			return 0
+		}
+		return defaultHeight
+	}
+	
+	open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let title = super.tableView(tableView, titleForHeaderInSection: section)
+		guard let controller = staticTableViewModel else {
+			return title
+		}
+		guard hideEmptySections else {
+			return title
+		}
+		let section = controller.sections[section]
+		guard section.rows.count > 0 else {
+			return nil
+		}
+		return title
+	}
+	
+	open override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+		let title = super.tableView(tableView, titleForFooterInSection: section)
+		guard let controller = staticTableViewModel else {
+			return title
+		}
+		guard hideEmptySections else {
+			return title
+		}
+		let section = controller.sections[section]
+		guard section.rows.count > 0 else {
+			return nil
+		}
+		return title
+	}
 }

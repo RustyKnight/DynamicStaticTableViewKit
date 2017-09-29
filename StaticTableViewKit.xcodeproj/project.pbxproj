@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		70C7B7C31F7DA5A800235040 /* StaticTableViewKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70C7B7CA1F7DA5E300235040 /* StaticDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */; };
+		70C7B7CA1F7DA5E300235040 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7C91F7DA5E300235040 /* StaticTableViewController.swift */; };
 		70C7B7CC1F7DA71C00235040 /* OriginalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */; };
 		70C7B7CE1F7DAE5F00235040 /* OriginalSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */; };
-		70F147221F7DBAEF00ECDEEB /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */; };
+		70F147221F7DBAEF00ECDEEB /* StaticTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F147211F7DBAEF00ECDEEB /* StaticTableViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70C7B7BE1F7DA5A800235040 /* StaticTableViewKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StaticTableViewKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticTableViewKit.h; sourceTree = "<group>"; };
 		70C7B7C21F7DA5A800235040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticDataTableViewController.swift; sourceTree = "<group>"; };
+		70C7B7C91F7DA5E300235040 /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
 		70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalRow.swift; sourceTree = "<group>"; };
 		70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalSection.swift; sourceTree = "<group>"; };
-		70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
+		70F147211F7DBAEF00ECDEEB /* StaticTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,8 @@
 				70C7B7C21F7DA5A800235040 /* Info.plist */,
 				70C7B7CB1F7DA71C00235040 /* OriginalRow.swift */,
 				70C7B7CD1F7DAE5F00235040 /* OriginalSection.swift */,
-				70F147211F7DBAEF00ECDEEB /* StaticTableViewController.swift */,
-				70C7B7C91F7DA5E300235040 /* StaticDataTableViewController.swift */,
+				70F147211F7DBAEF00ECDEEB /* StaticTableViewModel.swift */,
+				70C7B7C91F7DA5E300235040 /* StaticTableViewController.swift */,
 				70C7B7C11F7DA5A800235040 /* StaticTableViewKit.h */,
 			);
 			path = StaticTableViewKit;
@@ -144,10 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C7B7CA1F7DA5E300235040 /* StaticDataTableViewController.swift in Sources */,
+				70C7B7CA1F7DA5E300235040 /* StaticTableViewController.swift in Sources */,
 				70C7B7CC1F7DA71C00235040 /* OriginalRow.swift in Sources */,
 				70C7B7CE1F7DAE5F00235040 /* OriginalSection.swift in Sources */,
-				70F147221F7DBAEF00ECDEEB /* StaticTableViewController.swift in Sources */,
+				70F147221F7DBAEF00ECDEEB /* StaticTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +270,7 @@
 		70C7B7C71F7DA5A800235040 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -293,6 +294,7 @@
 		70C7B7C81F7DA5A800235040 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
