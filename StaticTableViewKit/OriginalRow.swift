@@ -15,7 +15,7 @@ enum BatchOperation {
 	case update
 }
 
-struct OriginalRow {
+class OriginalRow {
 	
 	var isHidden: Bool {
 		get {
@@ -45,7 +45,7 @@ struct OriginalRow {
     self.cell = cell
   }
 	
-	mutating func update() {
+ func update() {
 		guard !isHidden && batchOperation == .none else {
 			return
 		}
