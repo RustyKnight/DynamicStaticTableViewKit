@@ -57,4 +57,8 @@ class OriginalTableView {
 		}
 		return nil
 	}
+	
+	func indexPath(forRow row: OriginalRow) -> IndexPath {
+		
+	}
 }
