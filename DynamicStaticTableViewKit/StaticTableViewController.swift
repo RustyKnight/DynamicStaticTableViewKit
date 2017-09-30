@@ -86,9 +86,12 @@ open class DynamicStaticTableViewController: UITableViewController {
       }
     }
     tableView.beginUpdates()
+		print("update - \(controller.updateOperations)")
+		print("insert - \(controller.insertOperations)")
+		print("delete - \(controller.deleteOperations)")
     tableView.reloadRows(at: controller.updateOperations, with: reloadTableViewRowAnimation)
-    tableView.reloadRows(at: controller.insertOperations, with: insertTableViewRowAnimation)
-    tableView.reloadRows(at: controller.deleteOperations, with: deleteTableViewRowAnimation)
+    tableView.insertRows(at: controller.insertOperations, with: insertTableViewRowAnimation)
+    tableView.deleteRows(at: controller.deleteOperations, with: deleteTableViewRowAnimation)
     tableView.endUpdates()
     if animateSectionHeaders {
       tableView.reloadData()
@@ -123,7 +126,9 @@ open class DynamicStaticTableViewController: UITableViewController {
 		guard let controller = staticTableViewModel else {
 			return super.tableView(tableView, numberOfRowsInSection: section)
 		}
-		return controller.sections[section].numberOfVisibleRows
+		let count = controller.sections[section].numberOfVisibleRows
+		print("Rows in section \(section) = \(count)")
+		return count
 	}
 	
 	open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -199,7 +204,7 @@ open class DynamicStaticTableViewController: UITableViewController {
 			return title
 		}
 		let section = controller.sections[section]
-		guard section.rows.count > 0 else {
+		guard section.numberOfVisibleRows > 0 else {
 			return nil
 		}
 		return title
@@ -214,7 +219,7 @@ open class DynamicStaticTableViewController: UITableViewController {
 			return title
 		}
 		let section = controller.sections[section]
-		guard section.rows.count > 0 else {
+		guard section.numberOfVisibleRows > 0 else {
 			return nil
 		}
 		return title

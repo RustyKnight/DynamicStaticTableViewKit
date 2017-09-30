@@ -23,13 +23,16 @@ public class OriginalRow {
 		}
 		
 		set {
-			if !isHiddenReal && isHidden {
+			print("isHiddenReal = \(isHiddenReal)")
+			print("isHidden = \(newValue)")
+			print("isHiddenPlanned = \(isHiddenPlanned)")
+			if !isHiddenReal && newValue {
 				batchOperation = .delete
-			} else if isHiddenReal && !isHidden {
+			} else if isHiddenReal && !newValue {
 				batchOperation = .insert
 			}
 			
-			isHiddenPlanned = isHidden
+			isHiddenPlanned = newValue
 		}
 	}
 	

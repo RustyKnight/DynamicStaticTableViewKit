@@ -78,12 +78,13 @@ public class StaticTableViewModel {
 		return nil
 	}
   
-  func visibleIndexPath(for row: OriginalRow) -> IndexPath {
+	func visibleIndexPath(for row: OriginalRow, useActualState: Bool) -> IndexPath {
     let section = sections[row.indexPath.section]
     var visibleRow = -1
     for rowIndex in 0..<row.indexPath.row {
       let row = section.rows[rowIndex]
-      guard !row.isHidden else {
+			let state = useActualState ? row.isHidden : row.isHiddenReal
+      guard !state else {
         continue
       }
       visibleRow += 1
@@ -93,11 +94,11 @@ public class StaticTableViewModel {
   }
 	
   func insertingIndexPath(forRow row: OriginalRow) -> IndexPath {
-    return visibleIndexPath(for: row)
+    return visibleIndexPath(for: row, useActualState: true)
   }
   
   func deletingIndexPath(forRow row: OriginalRow) -> IndexPath {
-    return visibleIndexPath(for: row)
+    return visibleIndexPath(for: row, useActualState: false)
   }
   
   func prepareUpdates() {
@@ -116,7 +117,11 @@ public class StaticTableViewModel {
         }
       }
     }
-    
+		
+		print("insert - \(insertOperations)")
+		print("delete - \(deleteOperations)")
+		print("update - \(updateOperations)")
+
     operationIndexPaths[.delete] = deleteOperations
     operationIndexPaths[.insert] = insertOperations
     operationIndexPaths[.update] = updateOperations
